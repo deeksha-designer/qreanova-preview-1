@@ -358,10 +358,8 @@ a{text-decoration:none}
 .collection-stack article>div{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,.9);padding:13px;border-radius:8px}
 .collection-stack strong,.collection-stack span{display:block}
 .collection-stack span{font-size:13px;color:var(--muted)}
-/* taste-skill-ignore — client requested a right-edge launch gradient */
-.launches{position:relative;background:linear-gradient(90deg,#fff 0%,#fff 78%,#f1eee9 100%)}
-/* taste-skill-ignore — rail fade communicates additional products */
-.product-rail{grid-auto-columns:21.25%;mask-image:linear-gradient(to right,#000 0%,#000 94%,transparent 100%);padding-right:42px}
+.launches{position:relative;background:#fff url("assets/launch-fade.svg") center/100% 100% no-repeat}
+.product-rail{grid-auto-columns:21.25%;padding-right:42px}
 .shop-card{min-height:520px}
 .shop-media{height:285px;min-height:285px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .shop-media img{width:100%;height:100%;object-fit:contain;padding:22px}
@@ -420,8 +418,7 @@ a{text-decoration:none}
 .owner-grid{position:relative;max-width:100%;padding:0;height:580px;display:block}
 .owner-image{position:absolute;inset:0;min-height:0}
 .owner-image img{width:100%;height:100%;object-fit:cover}
-/* taste-skill-ignore — neutral photo scrim keeps owner copy legible */
-.owner-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,18,16,.76),rgba(18,18,16,.2) 62%,rgba(18,18,16,.08))}
+.owner-image::after{content:"";position:absolute;inset:0;background:rgba(18,18,16,.28)}
 .owner-copy{position:absolute;z-index:2;left:80px;top:50%;transform:translateY(-50%);width:min(590px,calc(100% - 160px));background:rgba(22,22,20,.92);padding:42px;border-radius:14px;color:#fff}
 .owner-copy p{color:rgba(255,255,255,.82)}
 .utility-dialog{width:min(520px,calc(100% - 32px));border:0;border-radius:var(--radius);padding:0}
