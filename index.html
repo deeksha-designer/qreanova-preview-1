@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Qreanova Kitchen Appliances — Innovations Redefined.">
+  <title>Qreanova Kitchen Appliances</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="site-header" id="home">
+      <div class="common-container header-inner">
+        <a class="brand" href="#home" aria-label="Qreanova home">
+          <img src="assets/logo.png" alt="Qreanova">
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <button class="nav-trigger" data-menu="products" aria-expanded="false" aria-controls="menu-products">Products</button>
+          <button class="nav-trigger" data-menu="collections" aria-expanded="false" aria-controls="menu-collections">Collections</button>
+          <button class="nav-trigger" data-menu="discover" aria-expanded="false" aria-controls="menu-discover">Discover Qreanova</button>
+          <button class="nav-trigger" data-menu="innovation" aria-expanded="false" aria-controls="menu-innovation">Innovation</button>
+          <button class="nav-trigger" data-menu="inspiration" aria-expanded="false" aria-controls="menu-inspiration">Inspiration</button>
+          <button class="nav-trigger" data-menu="support" aria-expanded="false" aria-controls="menu-support">Support</button>
+          <button class="nav-trigger" data-menu="contact" aria-expanded="false" aria-controls="menu-contact">Contact</button>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-button utility-trigger" aria-label="Find a store or service location" data-title="Find Qreanova" data-body="Dealer and service locations will be searchable here after the verified network is connected.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg>
+          </button>
+          <button class="icon-button" id="searchButton" aria-label="Open search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+          </button>
+          <button class="icon-button utility-trigger" aria-label="Open wishlist" data-title="Your wishlist" data-body="Your saved Qreanova products will appear here when Shopify customer data is connected.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.8a5.2 5.2 0 0 0-7.4 0L12 6.2l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 21l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z"></path></svg>
+          </button>
+          <button class="icon-button cart-button utility-trigger" aria-label="Open cart, 0 items" data-title="Your cart is empty" data-body="Choose a verified product variant to begin your Qreanova order.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2h10.9l2-7.2H6.2M9 19h.01M17 19h.01"></path></svg><span>0</span>
+          </button>
+          <a class="owner-link" href="#owner-center">Owner Center</a>
+          <button class="icon-button menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mega-menu" id="menu-products" data-panel="products" hidden>
+        <div class="mega-grid product-mega">
+          <div class="mega-category-block"><h2>Appliances</h2><div class="mega-category-grid"><a href="#find-appliances"><img src="assets/chimney-1.png" alt="Black chimney"><span>Chimneys</span></a><a href="#find-appliances"><img src="assets/product-hob.png" alt="Black glass hob"><span>Hobs</span></a><a href="#find-appliances"><img src="assets/product-cooktop.png" alt="Stainless steel cooktop"><span>Cooktops</span></a><a href="#find-appliances"><img src="assets/product-microwave.png" alt="Built-in microwave"><span>Built-in Microwaves</span></a><a href="#find-appliances"><img src="assets/product-oven.png" alt="Built-in oven"><span>Built-in Ovens</span></a><a href="#find-appliances"><img src="assets/product-induction.png" alt="Infrared induction cooktop"><span>Infrared Induction</span></a></div></div>
+          <div class="mega-secondary plan-panel">
+            <h2>Plan your choice</h2>
+            <a href="#collections">All appliances</a><a href="#collections">Compare appliances</a><a href="#details">Product videos</a>
+            <a href="#details">Specifications</a><a href="#details">Dimensions &amp; installation</a><a href="#support">Manuals &amp; downloads</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mega-menu" id="menu-collections" data-panel="collections" hidden>
+        <div class="mega-grid collection-mega"><a class="mega-image-card" href="#collections"><img src="assets/chimney-1.png" alt="Black chimney"><span>All models</span></a><a class="mega-image-card" href="#new-launches"><img src="assets/chimney-3.png" alt="New chimney"><span>New launches</span></a><a class="mega-image-card" href="#highlights"><img src="assets/product-oven.png" alt="Built-in oven"><span>Product highlights</span></a><a class="mega-image-card" href="#collections"><img src="assets/product-hob.png" alt="Black glass hob"><span>Compare models</span></a></div>
+      </div>
+
+      <div class="mega-menu" id="menu-discover" data-panel="discover" hidden>
+        <div class="mega-grid text-mega elevated-mega"><div><h2>Qreanova</h2><a href="#thinking">About Qreanova</a><a href="#thinking">Our philosophy</a><a href="#thinking">Vision &amp; mission</a></div><div><h2>Foundation</h2><a href="#thinking">Brand ambition</a><a href="#thinking">Presco-Mec Group</a><a href="#thinking">Manufacturing background</a></div><a class="mega-image-card landscape" href="#thinking"><img src="assets/engineering-concept.png" alt="Precision engineering concept"><span>Engineering-led foundation</span></a></div>
+      </div>
+
+      <div class="mega-menu" id="menu-innovation" data-panel="innovation" hidden>
+        <div class="mega-grid text-mega"><div><h2>What guides us</h2><a href="#thinking">Quality</a><a href="#thinking">Own R&amp;D Lab</a><a href="#thinking">Thoughtful innovation</a></div><div><h2>Product thinking</h2><a href="#details">Design &amp; performance</a><a href="#details">Appliance features</a><a href="#details">Technology highlights</a></div><div><h2>Technical view</h2><a href="#details">Product videos</a><a href="#details">Dimensions &amp; technical details</a><a href="#collections">Compare product features</a></div></div>
+      </div>
+
+      <div class="mega-menu" id="menu-inspiration" data-panel="inspiration" hidden>
+        <div class="mega-grid text-mega"><div><h2>Kitchen knowledge</h2><a href="#knowledge">Buying guides</a><a href="#knowledge">Appliance selection</a><a href="#knowledge">Kitchen planning</a></div><div><h2>Ownership</h2><a href="#knowledge">Usage &amp; maintenance</a><a href="#knowledge">Blogs &amp; insights</a><a href="#knowledge">Product stories</a></div><a class="mega-visual compact" href="#knowledge"><img src="assets/planning-concept.png" alt="Concept kitchen planning table"><span>Guides for better decisions</span></a></div>
+      </div>
+
+      <div class="mega-menu" id="menu-support" data-panel="support" hidden>
+        <div class="mega-grid text-mega"><div><h2>Help &amp; service</h2><a href="#support">Warranty information</a><a href="#support">Manuals &amp; downloads</a><a href="#support">FAQs</a><a href="#support">Dealer network</a></div><div><h2>For owners</h2><a href="#owner-center">Owner Center</a><a href="#owner-center">Product registration</a><a href="#owner-center">My appliances</a><a href="#owner-center">Care &amp; maintenance</a></div><div class="mega-note"><strong>Need assistance?</strong><p>Customer care details will appear here after client verification.</p><a href="#footer">Contact options</a></div></div>
+      </div>
+
+      <div class="mega-menu" id="menu-contact" data-panel="contact" hidden>
+        <div class="mega-grid text-mega"><div><h2>Contact</h2><a href="#footer">General enquiry</a><a href="#footer">Product enquiry</a><a href="#footer">Customer support</a></div><div><h2>Work with us</h2><a href="#footer">Dealer / distributor enquiry</a><a href="#footer">Architect / designer enquiry</a><a href="#footer">Builder / institutional enquiry</a></div><div><h2>Find us</h2><a href="#support">Dealer / service locations</a><a href="#footer">Social media</a></div></div>
+      </div>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
+        <div class="mobile-nav-inner">
+          <button class="mobile-close" id="mobileClose" aria-label="Close menu">Close</button>
+          <details><summary>Products</summary><a href="#find-appliances">Chimneys</a><a href="#find-appliances">Hobs</a><a href="#find-appliances">Cooktops</a><a href="#find-appliances">Built-in Microwaves</a><a href="#find-appliances">Built-in Ovens</a><a href="#find-appliances">Infrared Induction</a></details>
+          <details><summary>Collections</summary><a href="#collections">All models</a><a href="#new-launches">New launches</a><a href="#collections">Compare models</a></details>
+          <details><summary>Discover Qreanova</summary><a href="#thinking">About Qreanova</a><a href="#thinking">Presco-Mec Group</a><a href="#knowledge">News &amp; media</a></details>
+          <details><summary>Innovation</summary><a href="#thinking">Quality</a><a href="#thinking">Own R&amp;D Lab</a><a href="#details">Product features</a></details>
+          <details><summary>Inspiration</summary><a href="#knowledge">Kitchen knowledge</a><a href="#knowledge">Buying guides</a><a href="#knowledge">Maintenance</a></details>
+          <details><summary>Support</summary><a href="#support">Manuals</a><a href="#support">Warranty</a><a href="#owner-center">Owner Center</a></details>
+          <details><summary>Contact</summary><a href="#footer">General enquiry</a><a href="#footer">Business enquiry</a></details>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/kitchen-concept.png" aria-label="Premium modern kitchen interior">
+          <source src="assets/hero-kitchen.mp4" type="video/mp4">
+        </video>
+        <div class="hero-scrim"></div>
+        <div class="common-container hero-container">
+          <div class="hero-content reveal">
+            <p class="brand-signature">Innovations Redefined</p>
+            <h1 id="hero-title">Qreanova kitchen appliances</h1>
+            <p>Refined design, dependable quality and thoughtful innovation for modern kitchens.</p>
+            <a class="button button-light" href="#find-appliances">Shop appliances</a>
+          </div>
+        </div>
+        <div class="hero-credit">Concept footage · Alef Morais / Pexels</div>
+      </section>
+
+      <section class="section categories" id="find-appliances" aria-labelledby="categories-title">
+        <div class="common-container">
+        <div class="section-heading reveal"><h2 id="categories-title">Find your appliance</h2><p>Start with the role it plays in your kitchen.</p></div>
+        <div class="appliance-selector"><a class="appliance-tile reveal" href="#collections"><img src="assets/chimney-1.png" alt="Black chimney"><span><strong>Chimneys</strong><small>Explore</small></span></a><a class="appliance-tile reveal" href="#collections"><img src="assets/product-hob.png" alt="Black glass hob"><span><strong>Hobs</strong><small>Explore</small></span></a><a class="appliance-tile reveal" href="#collections"><img src="assets/product-cooktop.png" alt="Stainless steel cooktop"><span><strong>Cooktops</strong><small>Explore</small></span></a><a class="appliance-tile reveal" href="#collections"><img src="assets/product-microwave.png" alt="Built-in microwave"><span><strong>Built-in Microwaves</strong><small>Explore</small></span></a><a class="appliance-tile reveal" href="#collections"><img src="assets/product-oven.png" alt="Built-in oven"><span><strong>Built-in Ovens</strong><small>Explore</small></span></a><a class="appliance-tile reveal" href="#collections"><img src="assets/product-induction.png" alt="Infrared induction cooktop"><span><strong>Infrared Induction</strong><small>Explore</small></span></a></div>
+        </div>
+      </section>
+
+      <section class="section collections" id="collections" aria-labelledby="collections-title">
+        <div class="common-container">
+        <div class="section-heading split reveal"><div><h2 id="collections-title">Qreanova Collections</h2><p>Browse the current appliance families. Verified model data will populate this product layer.</p></div><button class="text-button planned-link" data-message="Compare will activate when verified model specifications are supplied.">Compare models</button></div>
+        <div class="collection-tabs" role="tablist" aria-label="Product categories">
+          <button role="tab" aria-selected="true" data-category="all">All</button><button role="tab" aria-selected="false" data-category="chimneys">Chimneys</button><button role="tab" aria-selected="false" data-category="hobs">Hobs</button><button role="tab" aria-selected="false" data-category="ovens">Ovens</button>
+        </div>
+        <div class="collection-editorial"><article class="collection-hero"><img src="assets/kitchen-concept.png" alt="Premium integrated kitchen concept"><div><p>Complete kitchen view</p><h3>Appliances designed to belong together</h3><button class="button button-light planned-link" data-message="Collection pages will connect to verified Shopify product groups.">Explore collection</button></div></article><div class="collection-stack"><article><img src="assets/chimney-2.png" alt="Stainless steel chimney concept"><div><strong>Ventilation</strong><span>Chimneys</span></div></article><article><img src="assets/oven-concept.png" alt="Built-in oven concept"><div><strong>Built-in cooking</strong><span>Ovens &amp; microwaves</span></div></article></div></div>
+        </div>
+      </section>
+
+      <section class="section launches" id="new-launches" aria-labelledby="launches-title">
+        <div class="common-container">
+          <div class="section-heading launch-heading reveal"><div><h2 id="launches-title">New Launches</h2><p>Discover the latest Qreanova introductions once approved product information is published.</p></div><div class="rail-controls"><button class="icon-button rail-prev" aria-label="Previous products">←</button><button class="icon-button rail-next" aria-label="Next products">→</button></div></div>
+          <div class="product-rail" id="launchRail">
+            <article class="shop-card reveal"><div class="shop-media"><img src="assets/chimney-1.png" alt="Generic black glass chimney concept"></div><div class="shop-body"><p class="shop-status">Product data pending</p><h3>Qreanova chimney</h3><p class="shop-meta">Approved model name, features and price will appear here.</p><label class="compare-control"><input type="checkbox"> Compare</label><div class="shop-actions"><button class="button button-quiet planned-link" data-message="Product pages are outside this homepage-only preview.">View details</button><button class="button planned-link" data-message="Buy now will connect to a verified Shopify variant.">Buy now</button></div></div></article>
+            <article class="shop-card reveal"><div class="shop-media"><img src="assets/chimney-2.png" alt="Generic stainless steel chimney concept"></div><div class="shop-body"><p class="shop-status">Product data pending</p><h3>Qreanova chimney</h3><p class="shop-meta">Approved model name, features and price will appear here.</p><label class="compare-control"><input type="checkbox"> Compare</label><div class="shop-actions"><button class="button button-quiet planned-link" data-message="Product pages are outside this homepage-only preview.">View details</button><button class="button planned-link" data-message="Buy now will connect to a verified Shopify variant.">Buy now</button></div></div></article>
+            <article class="shop-card reveal"><div class="shop-media"><img src="assets/chimney-3.png" alt="Generic curved glass chimney concept"></div><div class="shop-body"><p class="shop-status">Product data pending</p><h3>Qreanova chimney</h3><p class="shop-meta">Approved model name, features and price will appear here.</p><label class="compare-control"><input type="checkbox"> Compare</label><div class="shop-actions"><button class="button button-quiet planned-link" data-message="Product pages are outside this homepage-only preview.">View details</button><button class="button planned-link" data-message="Buy now will connect to a verified Shopify variant.">Buy now</button></div></div></article>
+            <article class="shop-card reveal"><div class="shop-media"><img src="assets/chimney-4.png" alt="Generic ceiling-integrated chimney concept"></div><div class="shop-body"><p class="shop-status">Product data pending</p><h3>Qreanova chimney</h3><p class="shop-meta">Approved model name, features and price will appear here.</p><label class="compare-control"><input type="checkbox"> Compare</label><div class="shop-actions"><button class="button button-quiet planned-link" data-message="Product pages are outside this homepage-only preview.">View details</button><button class="button planned-link" data-message="Buy now will connect to a verified Shopify variant.">Buy now</button></div></div></article>
+            <article class="shop-card reveal"><div class="shop-media"><img src="assets/oven-concept.png" alt="Generic built-in oven concept"></div><div class="shop-body"><p class="shop-status">Product data pending</p><h3>Qreanova built-in appliance</h3><p class="shop-meta">Approved model name, features and price will appear here.</p><label class="compare-control"><input type="checkbox"> Compare</label><div class="shop-actions"><button class="button button-quiet planned-link" data-message="Product pages are outside this homepage-only preview.">View details</button><button class="button planned-link" data-message="Buy now will connect to a verified Shopify variant.">Buy now</button></div></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="details" id="details" aria-labelledby="details-title">
+        <div class="common-container details-grid">
+        <div class="detail-media"><img id="detailImage" src="assets/oven-concept.png" alt="Concept close view of integrated cooking appliances"></div>
+        <div class="detail-content">
+          <div class="detail-heading reveal"><h2 id="details-title">Designed Around the Details</h2><p>A product story built to connect verified close-ups with the information that matters.</p></div>
+          <div class="detail-list">
+            <button class="detail-item active" data-image="assets/oven-concept.png"><span>Controls</span><small>Show interface close-ups and verified operating details.</small></button>
+            <button class="detail-item" data-image="assets/planning-concept.png"><span>Dimensions</span><small>Make planning, fit and installation information easy to find.</small></button>
+            <button class="detail-item" data-image="assets/engineering-concept.png"><span>Materials &amp; finishes</span><small>Bring approved surfaces and construction details into focus.</small></button>
+            <button class="detail-item" data-image="assets/kitchen-concept.png"><span>In the kitchen</span><small>Show how the appliance belongs in a complete space.</small></button>
+          </div>
+          <div class="detail-actions"><button class="button planned-link" data-message="Full specifications require approved product data.">Explore specifications</button><button class="text-button planned-link" data-message="Compare requires verified model data.">Compare models</button></div>
+        </div>
+        </div>
+      </section>
+
+      <section class="section thinking" id="thinking" aria-labelledby="thinking-title">
+        <div class="common-container">
+        <div class="thinking-editorial"><article class="thinking-image reveal"><img src="assets/engineering-concept.png" alt="Concept precision engineering workspace"><div><h2 id="thinking-title">The Thinking Behind Qreanova</h2><p>Backed by Presco-Mec Group and more than 40 years of precision manufacturing experience.</p></div></article><div class="thinking-principles"><article class="reveal"><span>Quality</span><p>An engineering-led foundation with quality named as a core brand strength.</p></article><article class="reveal"><span>Own R&amp;D Lab</span><p>A client-confirmed capability ready for approved facility stories and evidence.</p></article><article class="reveal"><span>Features</span><p>Verified product details presented clearly, visually and without inflated claims.</p></article></div></div>
+        </div>
+      </section>
+
+      <section class="section highlights" id="highlights" aria-labelledby="highlights-title">
+        <div class="common-container">
+        <div class="section-heading reveal"><h2 id="highlights-title">Offers &amp; Product Highlights</h2><p>A precise home for verified promotions and timely product stories.</p></div>
+        <div class="offer-gallery"><article class="offer-card reveal"><img src="assets/offer-kitchen.png" alt="Concept kitchen appliance offer artwork"><div><p>Seasonal offer space</p><h3>Verified offers, beautifully presented</h3><button class="button button-light planned-link" data-message="Offer details will publish only after terms and validity are verified.">View offer policy</button></div></article><article class="offer-card reveal"><img src="assets/offer-built-in.png" alt="Concept built-in appliance highlight artwork"><div><p>Product highlight</p><h3>A closer look at selected appliances</h3><button class="button button-light planned-link" data-message="Product highlights will connect to verified Shopify products.">Explore highlights</button></div></article></div>
+        </div>
+      </section>
+
+      <section class="section knowledge" id="knowledge" aria-labelledby="knowledge-title">
+        <div class="common-container">
+        <div class="section-heading split reveal"><div><h2 id="knowledge-title">Kitchen Knowledge — Guides &amp; Insights</h2><p>Useful content for choosing, planning, using and maintaining appliances.</p></div><button class="text-button planned-link" data-message="Article pages are outside this homepage-only preview.">View all guides</button></div>
+        <div class="knowledge-layout">
+          <article class="knowledge-feature reveal"><img src="assets/planning-concept.png" alt="Concept kitchen planning workspace"><div><p>Planning guide</p><h3>Making appliance dimensions part of the kitchen plan</h3><button class="text-button planned-link" data-message="This proposed guide requires approved editorial content before publication.">Read guide</button></div></article>
+          <div class="knowledge-list reveal">
+            <article><p>Selection guide</p><h3>Choosing the right appliance format</h3><button class="text-button planned-link" data-message="This proposed guide requires approved editorial content before publication.">Read guide</button></article>
+            <article><p>Care guide</p><h3>Building a practical maintenance routine</h3><button class="text-button planned-link" data-message="This proposed guide requires approved editorial content before publication.">Read guide</button></article>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section class="section support" id="support" aria-labelledby="support-title">
+        <div class="common-container">
+        <div class="section-heading reveal"><h2 id="support-title">Support Beyond Purchase</h2><p>Direct pathways to the information owners need.</p></div>
+        <div class="support-grid"><a class="support-card reveal" href="#owner-center"><span class="support-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7v23m0 0 9-9m-9 9-9-9M10 39h28"/></svg></span><strong>Manuals &amp; Downloads</strong><small>Product documents in one place</small></a><a class="support-card reveal" href="#owner-center"><span class="support-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6 39 12v11c0 10-6 16-15 20-9-4-15-10-15-20V12l15-6Z"/><path d="m17 24 5 5 10-11"/></svg></span><strong>Warranty Information</strong><small>Clear coverage guidance</small></a><a class="support-card reveal" href="#owner-center"><span class="support-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M11 28v-7a13 13 0 0 1 26 0v7"/><path d="M11 27H7v9h9v-9h-5Zm26 0h4v9h-9v-9h5ZM37 36c0 4-4 6-9 6"/></svg></span><strong>Service &amp; Help</strong><small>Assistance for owners</small></a><a class="support-card reveal" href="#footer"><span class="support-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 43s14-12 14-25a14 14 0 1 0-28 0c0 13 14 25 14 25Z"/><circle cx="24" cy="18" r="5"/></svg></span><strong>Dealer / Service Network</strong><small>Locations after verification</small></a></div>
+        </div>
+      </section>
+
+      <section class="owner-center" id="owner-center" aria-labelledby="owner-title">
+        <div class="common-container owner-grid">
+        <div class="owner-image"><img src="assets/kitchen-concept.png" alt="Concept Qreanova owner kitchen"></div><div class="owner-copy reveal"><h2 id="owner-title">Already own a Qreanova appliance?</h2><p>Owner Center brings manuals, warranty information and service pathways together. Account features remain pending backend approval.</p><div class="owner-actions"><button class="button planned-link" data-message="Phase 1 Owner Center will link verified manuals, warranty and service contacts.">Visit Owner Center</button><a href="#support">Browse support</a></div></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="footer">
+      <div class="common-container">
+      <div class="footer-top"><div><div class="footer-brand"><img src="assets/logo.png" alt="Qreanova"><p>Innovations Redefined</p></div><p class="footer-intro">Premium kitchen appliances shaped by refined design, dependable quality and thoughtful innovation.</p></div><div class="newsletter"><h2>Updates from Qreanova</h2><p>Product news, guides and verified offers, when the marketing setup is approved.</p><form><label for="footerEmail">Email address</label><div><input id="footerEmail" type="email" placeholder="you@example.com"><button type="button" class="button planned-link" data-message="Newsletter signup requires approved consent and marketing integration.">Subscribe</button></div></form></div></div>
+      <div class="footer-links"><div><h2>Products</h2><a href="#find-appliances">Chimneys</a><a href="#find-appliances">Hobs</a><a href="#find-appliances">Cooktops</a><a href="#find-appliances">Built-in appliances</a></div><div><h2>Qreanova</h2><a href="#thinking">About</a><a href="#thinking">Innovation</a><a href="#knowledge">Inspiration</a><a href="#thinking">Presco-Mec Group</a></div><div><h2>Support</h2><a href="#support">Manuals</a><a href="#support">Warranty</a><a href="#support">Service &amp; help</a><a href="#owner-center">Owner Center</a></div><div><h2>Contact</h2><button class="footer-button planned-link" data-message="Verified contact details are pending client input.">General enquiry</button><button class="footer-button planned-link" data-message="Verified dealer and service locations are pending client input.">Find a location</button><button class="footer-button planned-link" data-message="Verified social links are pending client input.">Social media</button></div></div>
+      <div class="footer-service"><span>Secure Shopify checkout</span><span>Verified warranty information</span><span>Dealer &amp; service network</span><span>Owner support</span></div>
+      <div class="footer-bottom"><span>© 2026 Qreanova. Preview for review.</span><span>Privacy · Terms · Shipping · Returns · Cookies</span></div>
+      </div>
+    </footer>
+  </div>
+
+  <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
+    <form method="dialog"><button class="icon-button dialog-close" aria-label="Close search">×</button><h2 id="searchTitle">Search Qreanova</h2><label for="siteSearch">Search by category, model name or model code</label><div class="search-row"><input id="siteSearch" type="search" placeholder="Try “built-in oven”"><button class="button" value="cancel">Search</button></div><p>Model search will connect when verified product data becomes available.</p></form>
+  </dialog>
+  <dialog class="utility-dialog" id="utilityDialog" aria-labelledby="utilityTitle"><form method="dialog"><button class="icon-button dialog-close" aria-label="Close">×</button><h2 id="utilityTitle"></h2><p id="utilityBody"></p><button class="button" value="close">Continue browsing</button></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="script.js"></script>
+</body>
+</html>
