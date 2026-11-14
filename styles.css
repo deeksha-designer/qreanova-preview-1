@@ -828,7 +828,7 @@ body.compare-open{overflow:hidden}
 .feature-copy{margin-bottom:28px}
 
 /* The Thinking Behind Qreanova */
-section#thinking{padding-top:0}
+
 .inspire-track{transition:none}
 .inspire-card{position:relative;flex:none;aspect-ratio:4/5;max-height:430px;border-radius:var(--radius);overflow:hidden;background:var(--dark)}
 .inspire-card::after{background:linear-gradient(180deg,rgba(20,20,18,0) 62%,rgba(20,20,18,.7) 100%)}
@@ -908,3 +908,12 @@ section#thinking{padding-top:0}
 @media (max-width:1120px){.offer-banners{grid-template-columns:1fr}}
 @media (max-width:760px){.offer-banner{grid-template-columns:40% 1fr;gap:20px;padding:24px}.offer-banner img{height:200px}.offer-banner p{font-size:20px;line-height:27px}}
 section#thinking{background:#fff url(assets/launch-fade.svg) center/100% 100% no-repeat}
+
+/* ===== Round 8 ===== */
+/* Support: image matches the content column height */
+.support-layout{align-items:stretch}
+.support-media{margin:0;border-radius:var(--radius);overflow:hidden;height:auto;min-height:550px;aspect-ratio:auto}
+.support-media img{height:100%}
+.support-tile-icon{display:grid;place-items:center;width:fit-content;height:auto;margin-bottom:38px;border-radius:50%;background:none;color:var(--bronze);font-size:42px}
+.support-tile strong{padding-right:0}
+@media (max-width:1120px){.support-media{min-height:0;height:420px}}
