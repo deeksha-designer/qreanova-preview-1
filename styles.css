@@ -494,7 +494,7 @@ a{text-decoration:none}
 .common-container{padding-top:0;padding-bottom:0}
 .section,.details{padding:100px 0}
 /* Adjacent sections sharing the page background: keep a single 100px gap between them */
-.categories+.collections,.highlights+.knowledge{padding-top:0}
+.categories+.collections,.highlights+.knowledge{background:#fff url(assets/launch-fade.svg) center/100% 100% no-repeat}
 
 /* Find your appliance: 4-column image grid with label below (reference layout) */
 .categories .section-heading{justify-content:center;text-align:center;margin-bottom:40px}
@@ -747,7 +747,7 @@ body.compare-open{overflow:hidden}
 
 /* The Thinking Behind Qreanova: image card carousel with progress */
 .thinking{background:var(--bg);color:var(--ink)}
-.thinking+.highlights{padding-top:0}
+
 .section-lead{max-width:60ch;margin:-20px auto 34px;text-align:center;color:var(--muted)}
 .inspire-viewport{overflow:hidden}
 .inspire-track{display:flex;gap:20px;transition:transform .7s cubic-bezier(.65,0,.35,1)}
@@ -907,3 +907,4 @@ section#thinking{padding-top:0}
 .offer-cta{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
 @media (max-width:1120px){.offer-banners{grid-template-columns:1fr}}
 @media (max-width:760px){.offer-banner{grid-template-columns:40% 1fr;gap:20px;padding:24px}.offer-banner img{height:200px}.offer-banner p{font-size:20px;line-height:27px}}
+section#thinking{background:#fff url(assets/launch-fade.svg) center/100% 100% no-repeat}
