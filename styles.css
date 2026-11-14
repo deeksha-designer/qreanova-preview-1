@@ -813,3 +813,88 @@ body.compare-open{overflow:hidden}
 .compare-control,.shop-body .compare-control{margin-top:auto;margin-bottom:24px;font-size:15px;display:flex;align-items:center;gap:8px}
 .shop-actions{margin-top:0}
 .launches .shop-media img{aspect-ratio:1/1}
+
+/* ===== Round 6 ===== */
+/* New Launches buttons + text spacing (user values) */
+.shop-body .shop-actions button.button{text-transform:capitalize;letter-spacing:0;padding:12px 0;min-height:32px}
+.shop-sku{margin:0 0 28px;font-size:14px;letter-spacing:0;color:var(--ink)}
+.shop-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:0}
+
+/* Designed Around the Details: right column fills the image height */
+.feature-split{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:50px;align-items:stretch}
+.feature-side{display:flex;flex-direction:column;min-height:0}
+.feature-thumb{flex:1 1 auto;aspect-ratio:auto;max-height:none;min-height:280px}
+.feature-side h2{line-height:52px;letter-spacing:-.025em;margin:0 0 14px;padding-top:40px;font-size:46px;width:80%}
+.feature-copy{margin-bottom:28px}
+
+/* The Thinking Behind Qreanova */
+section#thinking{padding-top:0}
+.inspire-track{transition:none}
+.inspire-card{position:relative;flex:none;aspect-ratio:4/5;max-height:430px;border-radius:var(--radius);overflow:hidden;background:var(--dark)}
+.inspire-card::after{background:linear-gradient(180deg,rgba(20,20,18,0) 62%,rgba(20,20,18,.7) 100%)}
+.inspire-card>div{bottom:26px}
+.inspire-card p{margin:0}
+
+/* Offers: two offer banners */
+.offer-banners{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.offer-banner{display:grid;grid-template-columns:46% 1fr;align-items:center;gap:24px;min-height:260px;padding:28px 40px 28px 28px;border-radius:var(--radius);background:radial-gradient(70% 90% at 25% 50%,#fff,rgba(255,255,255,0) 70%),var(--stone);color:var(--ink);transition:transform .25s ease,box-shadow .25s ease}
+.offer-banner:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(60,40,30,.10)}
+.offer-banner img{width:100%;height:210px;object-fit:contain;filter:drop-shadow(0 16px 18px rgba(0,0,0,.16));transition:transform .5s ease-out}
+.offer-banner:hover img{transform:scale(1.05)}
+.offer-banner p{margin:0 0 18px;font-size:26px;line-height:1.2;font-weight:300;text-transform:uppercase;letter-spacing:.01em;max-width:14ch}
+.offer-banner p b{font-weight:700;color:var(--bronze)}
+.offer-banner small{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.offer-price{display:block;font-size:34px;line-height:1.1;margin:2px 0 16px;color:var(--ink)}
+.offer-cta{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.offer-cta i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bronze);color:#fff;font-size:12px;transition:transform .25s ease}
+.offer-banner:hover .offer-cta i{transform:translateX(4px)}
+
+/* Support Beyond Purchase: on-theme layout */
+.support{background:var(--stone)}
+.support-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.support-media{margin:0;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/4.2}
+.support-media img{width:100%;height:100%;object-fit:cover}
+.support-content h2{font-size:clamp(32px,3.2vw,46px);line-height:1.08;letter-spacing:-.03em;margin:0 0 14px}
+.support-lead{margin:0 0 32px;color:var(--muted);max-width:52ch;line-height:1.6}
+.support-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.support-tile{position:relative;display:flex;flex-direction:column;gap:6px;padding:26px 24px;border-radius:var(--radius);background:#fff;color:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.03);transition:transform .25s ease,box-shadow .25s ease}
+.support-tile:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(60,40,30,.10)}
+.support-tile-icon{display:grid;place-items:center;width:46px;height:46px;margin-bottom:14px;border-radius:50%;background:#f3e7e2;color:var(--bronze);font-size:18px}
+.support-tile strong{font-size:18px;padding-right:28px}
+.support-tile small{color:var(--muted);font-size:14px}
+.support-tile-arrow{position:absolute;top:28px;right:24px;color:var(--bronze);transition:transform .25s ease}
+.support-tile:hover .support-tile-arrow{transform:translateX(4px)}
+
+/* Owner Center: light card, never clipped */
+.owner-center{background:var(--bg);color:var(--ink)}
+.owner-grid{position:relative;height:auto;min-height:560px;display:flex;align-items:center;padding:70px var(--page);max-width:100%}
+.owner-image{position:absolute;inset:0}
+.owner-image::after{background:linear-gradient(90deg,rgba(250,250,248,.55) 0%,rgba(250,250,248,0) 60%)}
+.owner-copy{position:relative;left:auto;top:auto;transform:none;width:min(600px,100%);max-height:none;overflow:visible;padding:44px;border-radius:var(--radius);background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 24px 50px rgba(60,40,30,.12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.owner-copy h2{font-size:clamp(32px,3vw,46px);color:var(--ink)}
+.owner-copy p{color:var(--muted);margin-top:14px}
+.owner-actions{gap:12px;margin-top:28px;flex-wrap:wrap}
+.owner-actions a{text-decoration:none}
+
+/* Footer: visible logo, aligned columns, readable text */
+.footer>.common-container{padding-top:80px;padding-bottom:32px}
+.footer-top{grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-brand img{width:230px;mix-blend-mode:normal;filter:brightness(0) invert(1)}
+.footer-brand p{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-2);margin-top:14px}
+.footer-intro{color:rgba(255,255,255,.72);max-width:46ch;line-height:1.7}
+.newsletter h2{font-size:24px;color:#fff}
+.newsletter p,.newsletter label{color:rgba(255,255,255,.72)}
+.newsletter input{border-radius:24px;padding:13px 20px;min-height:46px}
+.footer-statement{font-size:clamp(36px,4.4vw,64px);line-height:1.05;max-width:16ch;margin:56px 0;color:#fff;font-weight:300}
+.footer-links{padding:44px 0;background:none;border-radius:0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);gap:32px}
+.footer-links>div{padding:0}
+.footer-links h2{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-2);margin-bottom:18px}
+.footer-links a,.footer-button{color:rgba(255,255,255,.78);font-size:15px;padding:7px 0}
+.footer-links a:hover,.footer-button:hover{color:#fff}
+.footer-service{margin-top:32px;gap:12px}
+.footer-service span{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:12px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.85);font-size:14px}
+.footer-service i{color:var(--bronze-2)}
+.footer-bottom{margin-top:32px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6)}
+
+@media (max-width:1120px){.offer-banners{grid-template-columns:1fr}.support-layout{grid-template-columns:1fr;gap:32px}.support-media{aspect-ratio:16/9}.feature-side h2{width:100%;padding-top:24px}}
+@media (max-width:760px){.offer-banner{grid-template-columns:40% 1fr;padding:22px;gap:16px}.offer-banner p{font-size:20px}.support-tiles{grid-template-columns:1fr}.owner-grid{padding:40px 18px;min-height:0}.owner-copy{padding:28px}.footer-top{grid-template-columns:1fr;gap:36px}.feature-side h2{font-size:34px;line-height:40px}}

@@ -427,16 +427,6 @@ createLoopSlider({
   next: document.querySelector('.rail-next')
 });
 
-createLoopSlider({
-  viewport: document.getElementById('promoViewport'),
-  track: document.getElementById('promoTrack'),
-  perView: (w) => (w > 1120 ? 3 : w > 640 ? 2 : 1),
-  gap: 16,
-  interval: 3400,
-  prev: document.querySelector('.promo-prev'),
-  next: document.querySelector('.promo-next')
-});
-
 // Kitchen Knowledge: 3.2 cards visible, infinite autoplay every 3.2s, filter tabs rebuild the set
 const blogRail = document.getElementById('blogRail');
 const blogCards = blogRail ? [...blogRail.children] : [];
@@ -463,39 +453,16 @@ document.querySelectorAll('[data-blog-filter]').forEach((filter) => {
   });
 });
 
-// The Thinking Behind Qreanova: stepped carousel with a progress bar
-const inspireTrack = document.getElementById('inspireTrack');
-if (inspireTrack) {
-  const viewport = document.getElementById('inspireViewport');
-  const progress = document.getElementById('inspireProgress');
-  const prevBtn = document.querySelector('.inspire-prev');
-  const nextBtn = document.querySelector('.inspire-next');
-  const GAP = 20;
-  let index = 0;
-  let perView = 3;
-  let step = 0;
-  const cards = [...inspireTrack.children];
-  function render() {
-    const max = Math.max(0, cards.length - perView);
-    index = Math.min(index, max);
-    inspireTrack.style.transform = `translate3d(${-index * step}px,0,0)`;
-    progress.style.width = `${((index + perView) / cards.length) * 100}%`;
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index >= max;
-  }
-  function layoutInspire() {
-    const width = viewport.clientWidth;
-    perView = width > 1000 ? 3 : width > 600 ? 2 : 1;
-    const cardWidth = (width - GAP * (perView - 1)) / perView;
-    step = cardWidth + GAP;
-    cards.forEach((card) => { card.style.width = `${cardWidth}px`; });
-    render();
-  }
-  prevBtn.addEventListener('click', () => { index -= 1; render(); });
-  nextBtn.addEventListener('click', () => { index += 1; render(); });
-  window.addEventListener('resize', layoutInspire);
-  layoutInspire();
-}
+// The Thinking Behind Qreanova: 3.5 cards visible, infinite autoplay
+createLoopSlider({
+  viewport: document.getElementById('inspireViewport'),
+  track: document.getElementById('inspireTrack'),
+  perView: (w) => (w > 1120 ? 3.5 : w > 760 ? 2.5 : 1.2),
+  gap: 20,
+  interval: 3400,
+  prev: document.querySelector('.inspire-prev'),
+  next: document.querySelector('.inspire-next')
+});
 
 // Designed Around the Details: small image slideshow with pause/play
 const featureThumb = document.getElementById('featureThumb');
