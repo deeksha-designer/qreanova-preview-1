@@ -73,9 +73,9 @@ document.querySelectorAll('.detail-item').forEach((item) => {
   });
 });
 
-document.querySelectorAll('[role="tab"]').forEach((tab) => {
+document.querySelectorAll('.collection-tabs [role="tab"]').forEach((tab) => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('[role="tab"]').forEach((button) => button.setAttribute('aria-selected', 'false'));
+    document.querySelectorAll('.collection-tabs [role="tab"]').forEach((button) => button.setAttribute('aria-selected', 'false'));
     tab.setAttribute('aria-selected', 'true');
     showToast(`${tab.textContent} selected. Verified product data will populate this collection.`);
   });
@@ -98,6 +98,22 @@ const launchRail = document.getElementById('launchRail');
 const moveLaunchRail = (direction) => launchRail.scrollBy({ left: direction * Math.max(320, launchRail.clientWidth * 0.78), behavior: 'smooth' });
 document.querySelector('.rail-prev')?.addEventListener('click', () => moveLaunchRail(-1));
 document.querySelector('.rail-next')?.addEventListener('click', () => moveLaunchRail(1));
+
+const blogRail = document.getElementById('blogRail');
+const moveBlogRail = (direction) => blogRail?.scrollBy({ left: direction * Math.max(300, blogRail.clientWidth * 0.7), behavior: 'smooth' });
+document.querySelector('.blog-prev')?.addEventListener('click', () => moveBlogRail(-1));
+document.querySelector('.blog-next')?.addEventListener('click', () => moveBlogRail(1));
+document.querySelectorAll('[data-blog-filter]').forEach((filter) => {
+  filter.addEventListener('click', () => {
+    document.querySelectorAll('[data-blog-filter]').forEach((button) => button.setAttribute('aria-selected', 'false'));
+    filter.setAttribute('aria-selected', 'true');
+    const category = filter.dataset.blogFilter;
+    document.querySelectorAll('.blog-card').forEach((card) => {
+      card.hidden = category !== 'all' && card.dataset.blogCategory !== category;
+    });
+    blogRail?.scrollTo({ left: 0, behavior: 'smooth' });
+  });
+});
 
 searchDialog.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
