@@ -75,11 +75,11 @@ document.querySelectorAll('.detail-item').forEach((item) => {
 
 const collectionData = {
   all: {
-    hero: { src: 'assets/kitchen-concept.png', alt: 'Premium integrated kitchen with Qreanova appliances', kicker: 'Complete kitchen view', title: 'Appliances designed to belong together' },
+    hero: { src: 'assets/kitchen-concept.png', alt: 'Built-in Qreanova ovens in a premium kitchen', focus: '74% 55%' },
     items: ['chimneys', 'hobs', 'ovens']
   },
   chimneys: {
-    hero: { src: 'assets/offer-kitchen.png', alt: 'Black glass Qreanova chimney above a gas hob', kicker: 'Ventilation', title: 'Chimneys that keep the kitchen clear' },
+    hero: { src: 'assets/offer-kitchen.png', alt: 'Black glass Qreanova chimney above a gas hob', focus: '83% 45%' },
     items: [
       { src: 'assets/chimney-1.png', alt: 'Black glass angled chimney', name: 'Angled glass chimney', type: 'Chimneys' },
       { src: 'assets/chimney-2.png', alt: 'Stainless steel T-shape chimney', name: 'T-shape chimney', type: 'Chimneys' },
@@ -88,7 +88,7 @@ const collectionData = {
     ]
   },
   hobs: {
-    hero: { src: 'assets/offer-built-in.png', alt: 'Glass hob set into a stone countertop', kicker: 'Cooking surfaces', title: 'Hobs and cooktops for everyday cooking' },
+    hero: { src: 'assets/offer-built-in.png', alt: 'Glass hob set into a stone countertop', focus: '18% 70%' },
     items: [
       { src: 'assets/product-hob.png', alt: 'Black glass gas hob', name: 'Glass gas hob', type: 'Hobs' },
       { src: 'assets/product-cooktop.png', alt: 'Stainless steel cooktop', name: 'Stainless cooktop', type: 'Cooktops' },
@@ -96,7 +96,7 @@ const collectionData = {
     ]
   },
   ovens: {
-    hero: { src: 'assets/oven-concept.png', alt: 'Built-in oven in a warm stone kitchen', kicker: 'Built-in cooking', title: 'Ovens and microwaves made to fit in' },
+    hero: { src: 'assets/oven-concept.png', alt: 'Built-in oven in a warm stone kitchen', focus: '68% 45%' },
     items: [
       { src: 'assets/product-oven.png', alt: 'Built-in oven', name: 'Built-in oven', type: 'Ovens' },
       { src: 'assets/product-microwave.png', alt: 'Built-in microwave', name: 'Built-in microwave', type: 'Microwaves' }
@@ -108,64 +108,70 @@ collectionData.all.items = collectionData.all.items.flatMap((key) => collectionD
 const collectionShowcase = document.getElementById('collectionShowcase');
 if (collectionShowcase) {
   const hero = document.getElementById('collectionHero');
-  const heroImg = hero.querySelector('img');
-  const heroKicker = document.getElementById('collectionHeroKicker');
-  const heroTitle = document.getElementById('collectionHeroTitle');
   const slider = document.getElementById('collectionSlider');
-  const track = document.getElementById('collectionTrack');
   const tabs = [...document.querySelectorAll('.collection-tabs [role="tab"]')];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const GAP = 14;
   const INTERVAL = 3200;
+  const FADE = 550;
+  let track = document.getElementById('collectionTrack');
   let count = 0;
   let start = 0;
   let index = 0;
   let step = 0;
   let offset = 0;
+  let cardWidth = 0;
   let timer;
   let paused = false;
+  let switching = false;
 
-  const cardHTML = (item) => `<article class="collection-card"><img src="${item.src}" alt="${item.alt}" loading="lazy"><div><strong>${item.name}</strong><span>${item.type}</span></div></article>`;
+  const cardHTML = (item) => `<article class="collection-card"><img src="${item.src}" alt="${item.alt}" loading="lazy"><h3>${item.name}</h3></article>`;
 
-  function layout() {
+  function measure() {
     const overlay = getComputedStyle(hero).position === 'absolute';
     const width = slider.clientWidth;
     offset = overlay ? hero.offsetWidth + GAP : 0;
     const visible = width - offset;
-    const perView = overlay ? (visible > 560 ? 2 : 1) : 1;
-    const cardWidth = overlay ? (visible - GAP * (perView - 1)) / perView : width * 0.72;
+    const perView = overlay ? (visible > 900 ? 3 : visible > 520 ? 2 : 1) : 1;
+    cardWidth = overlay ? (visible - GAP * (perView - 1)) / perView : width * 0.72;
     step = cardWidth + GAP;
-    track.querySelectorAll('.collection-card').forEach((card) => { card.style.width = `${cardWidth}px`; });
-    position(false);
   }
 
-  function position(animate) {
-    track.style.transition = animate ? 'transform .7s cubic-bezier(.65,0,.35,1), opacity .3s ease' : 'opacity .3s ease';
-    track.style.transform = `translate3d(${offset - index * step}px,0,0)`;
+  function position(el, animate) {
+    el.style.transition = animate ? 'transform .7s cubic-bezier(.65,0,.35,1), opacity .55s ease' : 'opacity .55s ease';
+    el.style.transform = `translate3d(${offset - index * step}px,0,0)`;
   }
 
-  function build(key) {
+  function onTrackEnd(event) {
+    if (event.propertyName !== 'transform' || event.currentTarget !== track) return;
+    if (index >= start + count || index <= start - count) {
+      index = start + (((index - start) % count) + count) % count;
+      position(track, false);
+    }
+  }
+
+  function fill(el, key) {
     const items = collectionData[key].items;
     count = items.length;
     const copies = Math.max(5, Math.ceil(16 / count));
-    track.innerHTML = Array.from({ length: copies }, () => items.map(cardHTML).join('')).join('');
+    el.innerHTML = Array.from({ length: copies }, () => items.map(cardHTML).join('')).join('');
     start = count * Math.floor(copies / 2);
     index = start;
-    layout();
+    el.querySelectorAll('.collection-card').forEach((card) => { card.style.width = `${cardWidth}px`; });
+    position(el, false);
+  }
+
+  function layout() {
+    measure();
+    track.querySelectorAll('.collection-card').forEach((card) => { card.style.width = `${cardWidth}px`; });
+    position(track, false);
   }
 
   function move(direction) {
+    if (switching) return;
     index += direction;
-    position(true);
+    position(track, true);
   }
-
-  track.addEventListener('transitionend', (event) => {
-    if (event.propertyName !== 'transform') return;
-    if (index >= start + count || index < start - count + 1) {
-      index = start + (((index - start) % count) + count) % count;
-      position(false);
-    }
-  });
 
   function play() {
     window.clearInterval(timer);
@@ -173,20 +179,40 @@ if (collectionShowcase) {
     timer = window.setInterval(() => { if (!paused && !document.hidden) move(1); }, INTERVAL);
   }
 
+  function setHero(h, animate) {
+    const current = hero.querySelector('img');
+    hero.style.setProperty('--focus', h.focus);
+    if (!animate) { current.src = h.src; current.alt = h.alt; return; }
+    const next = new Image();
+    next.src = h.src;
+    next.alt = h.alt;
+    next.className = 'is-entering';
+    const reveal = () => {
+      hero.appendChild(next);
+      requestAnimationFrame(() => requestAnimationFrame(() => next.classList.remove('is-entering')));
+      window.setTimeout(() => current.remove(), FADE + 50);
+    };
+    if (next.complete) reveal(); else next.addEventListener('load', reveal, { once: true });
+  }
+
+  // Crossfade: the new card set fades in over the old one, no blank frame
   function show(key) {
-    const { hero: h } = collectionData[key];
-    hero.classList.add('is-switching');
-    track.classList.add('is-switching');
-    window.setTimeout(() => {
-      heroImg.src = h.src;
-      heroImg.alt = h.alt;
-      heroKicker.textContent = h.kicker;
-      heroTitle.textContent = h.title;
-      build(key);
-      hero.classList.remove('is-switching');
-      track.classList.remove('is-switching');
-      play();
-    }, 260);
+    switching = true;
+    window.clearInterval(timer);
+    setHero(collectionData[key].hero, true);
+    const oldTrack = track;
+    const next = document.createElement('div');
+    next.className = 'collection-track is-entering';
+    next.addEventListener('transitionend', onTrackEnd);
+    measure();
+    fill(next, key);
+    slider.appendChild(next);
+    track = next;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      next.classList.remove('is-entering');
+      oldTrack.classList.add('is-leaving');
+    }));
+    window.setTimeout(() => { oldTrack.remove(); switching = false; play(); }, FADE + 50);
   }
 
   tabs.forEach((tab) => {
@@ -205,43 +231,296 @@ if (collectionShowcase) {
   collectionShowcase.addEventListener('focusout', () => { paused = false; });
   window.addEventListener('resize', layout);
 
-  build('all');
+  track.addEventListener('transitionend', onTrackEnd);
+  setHero(collectionData.all.hero, false);
+  measure();
+  fill(track, 'all');
   play();
 }
 
-const toast = document.getElementById('toast');
-let toastTimer;
-function showToast(message) {
-  window.clearTimeout(toastTimer);
-  toast.textContent = message;
-  toast.hidden = false;
-  toastTimer = window.setTimeout(() => { toast.hidden = true; }, 4200);
+/* Compare: tray (bottom-left) + panel that slides down from the top */
+const compareTray = document.getElementById('compareTray');
+const comparePanel = document.getElementById('comparePanel');
+if (compareTray && comparePanel) {
+  const MAX_COMPARE = 4;
+  const checks = [...document.querySelectorAll('.compare-check')];
+  const slots = document.getElementById('compareSlots');
+  const specs = document.getElementById('compareSpecs');
+  const title = document.getElementById('compareTitle');
+  const count = document.getElementById('compareCount');
+  const highlight = document.getElementById('compareHighlight');
+  const specsToggle = document.getElementById('compareSpecsToggle');
+  const PENDING = 'Awaiting verified data';
+  const SPEC_ROWS = [
+    ['Category', (c) => c.dataset.category],
+    ['Style', (c) => c.dataset.style],
+    ['Finish', (c) => c.dataset.finish],
+    ['SKU', (c) => c.dataset.sku],
+    ['Price', (c) => c.dataset.price],
+    ['MRP', (c) => c.dataset.mrp],
+    ['Suction / capacity', () => PENDING],
+    ['Warranty', () => PENDING]
+  ];
+  let lastFocus;
+
+  const selected = () => checks.filter((check) => check.checked).map((check) => check.closest('.shop-card'));
+
+  function renderTray() {
+    const n = selected().length;
+    count.textContent = n;
+    compareTray.hidden = n === 0;
+    if (n === 0 && comparePanel.classList.contains('open')) closePanel();
+  }
+
+  function renderPanel() {
+    const cards = selected();
+    title.textContent = `Compare ${cards.length} Product${cards.length === 1 ? '' : 's'}`;
+    slots.innerHTML = Array.from({ length: MAX_COMPARE }, (_, i) => {
+      const card = cards[i];
+      if (!card) return `<div class="compare-slot"><div class="compare-empty"><span>${i + 1}</span></div></div>`;
+      const img = card.querySelector('.shop-media img');
+      return `<div class="compare-slot"><div class="compare-slot-media"><img src="${img.getAttribute('src')}" alt="${img.alt}"><button class="compare-remove" type="button" data-index="${checks.indexOf(card.querySelector('.compare-check'))}" aria-label="Remove ${card.dataset.name}">×</button></div><small>${card.dataset.sku}</small><h3>${card.dataset.name}</h3><p class="compare-style">${card.dataset.style}</p><p class="compare-price"><b>${card.dataset.price}</b><s>${card.dataset.mrp}</s></p><button class="button planned-link" type="button" data-message="Add to cart will connect to a verified Shopify variant.">Add to Cart</button></div>`;
+    }).join('');
+    specs.innerHTML = SPEC_ROWS.map(([label, get]) => {
+      const values = cards.map(get);
+      const different = cards.length > 1 && new Set(values).size > 1;
+      const cells = Array.from({ length: MAX_COMPARE }, (_, i) => `<span>${values[i] ?? ''}</span>`).join('');
+      return `<div class="compare-row" data-different="${different}"><span>${label}</span>${cells}</div>`;
+    }).join('');
+    applyHighlight();
+    slots.querySelectorAll('.planned-link').forEach((control) => control.addEventListener('click', () => showToast(control.dataset.message)));
+  }
+
+  function openPanel() {
+    renderPanel();
+    lastFocus = document.activeElement;
+    comparePanel.classList.add('open');
+    comparePanel.setAttribute('aria-hidden', 'false');
+    compareTray.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('compare-open');
+    comparePanel.scrollTop = 0;
+    window.setTimeout(() => document.getElementById('compareClose').focus(), 300);
+  }
+
+  function closePanel() {
+    comparePanel.classList.remove('open');
+    comparePanel.setAttribute('aria-hidden', 'true');
+    compareTray.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('compare-open');
+    lastFocus?.focus?.();
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener('change', () => {
+      if (check.checked && selected().length > MAX_COMPARE) {
+        check.checked = false;
+        showToast(`You can compare up to ${MAX_COMPARE} products.`);
+      }
+      renderTray();
+      if (comparePanel.classList.contains('open')) renderPanel();
+    });
+  });
+
+  slots.addEventListener('click', (event) => {
+    const remove = event.target.closest('.compare-remove');
+    if (!remove) return;
+    checks[Number(remove.dataset.index)].checked = false;
+    renderTray();
+    if (selected().length) renderPanel();
+  });
+
+  compareTray.addEventListener('click', openPanel);
+  document.getElementById('compareClose').addEventListener('click', closePanel);
+  document.getElementById('compareContinue').addEventListener('click', closePanel);
+  comparePanel.addEventListener('click', (event) => { if (event.target === comparePanel) closePanel(); });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && comparePanel.classList.contains('open')) closePanel(); });
+  function applyHighlight() {
+    const on = highlight.checked;
+    const enough = selected().length > 1;
+    specs.classList.toggle('is-highlighting', on && enough);
+    specs.querySelectorAll('.compare-row').forEach((row) => row.classList.toggle('is-different', on && enough && row.dataset.different === 'true'));
+    document.getElementById('compareHint').hidden = !(on && !enough);
+  }
+  highlight.addEventListener('change', applyHighlight);
+  specsToggle.addEventListener('click', () => {
+    const open = specsToggle.getAttribute('aria-expanded') !== 'true';
+    specsToggle.setAttribute('aria-expanded', String(open));
+    specs.hidden = !open;
+  });
+
+  renderTray();
 }
 
-document.querySelectorAll('.planned-link').forEach((control) => {
-  control.addEventListener('click', () => showToast(control.dataset.message));
+// Shared infinite slider: rotates the real elements (no clones), so checkboxes and listeners keep working
+function createLoopSlider({ viewport, track, perView, interval = 3200, gap = 14, prev, next }) {
+  if (!viewport || !track) return null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let step = 0;
+  let visible = 1;
+  let busy = false;
+  let paused = false;
+  let timer;
+  const EASE = 'transform .7s cubic-bezier(.65,0,.35,1)';
+
+  function layout() {
+    const width = viewport.clientWidth;
+    visible = perView(width);
+    const gaps = Number.isInteger(visible) ? visible - 1 : Math.floor(visible);
+    const itemWidth = (width - gap * gaps) / visible;
+    step = itemWidth + gap;
+    [...track.children].forEach((item) => { item.style.width = `${itemWidth}px`; });
+    track.style.transition = 'none';
+    track.style.transform = 'translate3d(0,0,0)';
+  }
+
+  const canLoop = () => track.children.length > Math.ceil(visible);
+
+  function slide(direction) {
+    if (busy || !canLoop()) return;
+    busy = true;
+    if (direction > 0) {
+      track.style.transition = EASE;
+      track.style.transform = `translate3d(${-step}px,0,0)`;
+      track.addEventListener('transitionend', () => {
+        track.style.transition = 'none';
+        track.appendChild(track.firstElementChild);
+        track.style.transform = 'translate3d(0,0,0)';
+        busy = false;
+      }, { once: true });
+    } else {
+      track.style.transition = 'none';
+      track.prepend(track.lastElementChild);
+      track.style.transform = `translate3d(${-step}px,0,0)`;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        track.style.transition = EASE;
+        track.style.transform = 'translate3d(0,0,0)';
+      }));
+      track.addEventListener('transitionend', () => { busy = false; }, { once: true });
+    }
+  }
+
+  function play() {
+    window.clearInterval(timer);
+    if (reduceMotion) return;
+    timer = window.setInterval(() => { if (!paused && !document.hidden) slide(1); }, interval);
+  }
+
+  prev?.addEventListener('click', () => { slide(-1); play(); });
+  next?.addEventListener('click', () => { slide(1); play(); });
+  const area = viewport.parentElement;
+  area.addEventListener('mouseenter', () => { paused = true; });
+  area.addEventListener('mouseleave', () => { paused = false; });
+  area.addEventListener('focusin', () => { paused = true; });
+  area.addEventListener('focusout', () => { paused = false; });
+  window.addEventListener('resize', layout);
+  layout();
+  play();
+  return { refresh() { busy = false; layout(); play(); } };
+}
+
+createLoopSlider({
+  viewport: document.getElementById('launchViewport'),
+  track: document.getElementById('launchRail'),
+  perView: (w) => (w > 1120 ? 4 : w > 760 ? 3 : w > 520 ? 2 : 1.15),
+  interval: 3600,
+  prev: document.querySelector('.rail-prev'),
+  next: document.querySelector('.rail-next')
 });
 
-const launchRail = document.getElementById('launchRail');
-const moveLaunchRail = (direction) => launchRail.scrollBy({ left: direction * Math.max(320, launchRail.clientWidth * 0.78), behavior: 'smooth' });
-document.querySelector('.rail-prev')?.addEventListener('click', () => moveLaunchRail(-1));
-document.querySelector('.rail-next')?.addEventListener('click', () => moveLaunchRail(1));
+createLoopSlider({
+  viewport: document.getElementById('promoViewport'),
+  track: document.getElementById('promoTrack'),
+  perView: (w) => (w > 1120 ? 3 : w > 640 ? 2 : 1),
+  gap: 16,
+  interval: 3400,
+  prev: document.querySelector('.promo-prev'),
+  next: document.querySelector('.promo-next')
+});
 
+// Kitchen Knowledge: 3.2 cards visible, infinite autoplay every 3.2s, filter tabs rebuild the set
 const blogRail = document.getElementById('blogRail');
-const moveBlogRail = (direction) => blogRail?.scrollBy({ left: direction * Math.max(300, blogRail.clientWidth * 0.7), behavior: 'smooth' });
-document.querySelector('.blog-prev')?.addEventListener('click', () => moveBlogRail(-1));
-document.querySelector('.blog-next')?.addEventListener('click', () => moveBlogRail(1));
+const blogCards = blogRail ? [...blogRail.children] : [];
+const blogSlider = createLoopSlider({
+  viewport: document.getElementById('blogViewport'),
+  track: blogRail,
+  perView: (w) => (w > 1120 ? 3.2 : w > 760 ? 2.2 : 1.15),
+  interval: 3200,
+  prev: document.querySelector('.blog-prev'),
+  next: document.querySelector('.blog-next')
+});
 document.querySelectorAll('[data-blog-filter]').forEach((filter) => {
   filter.addEventListener('click', () => {
-    document.querySelectorAll('[data-blog-filter]').forEach((button) => button.setAttribute('aria-selected', 'false'));
-    filter.setAttribute('aria-selected', 'true');
+    document.querySelectorAll('[data-blog-filter]').forEach((button) => button.setAttribute('aria-selected', String(button === filter)));
     const category = filter.dataset.blogFilter;
-    document.querySelectorAll('.blog-card').forEach((card) => {
-      card.hidden = category !== 'all' && card.dataset.blogCategory !== category;
-    });
-    blogRail?.scrollTo({ left: 0, behavior: 'smooth' });
+    const matching = blogCards.filter((card) => category === 'all' || card.dataset.blogCategory === category);
+    blogRail.style.opacity = '0';
+    window.setTimeout(() => {
+      blogRail.replaceChildren(...matching);
+      matching.forEach((card) => { card.hidden = false; });
+      blogSlider?.refresh();
+      blogRail.style.opacity = '1';
+    }, 220);
   });
 });
+
+// The Thinking Behind Qreanova: stepped carousel with a progress bar
+const inspireTrack = document.getElementById('inspireTrack');
+if (inspireTrack) {
+  const viewport = document.getElementById('inspireViewport');
+  const progress = document.getElementById('inspireProgress');
+  const prevBtn = document.querySelector('.inspire-prev');
+  const nextBtn = document.querySelector('.inspire-next');
+  const GAP = 20;
+  let index = 0;
+  let perView = 3;
+  let step = 0;
+  const cards = [...inspireTrack.children];
+  function render() {
+    const max = Math.max(0, cards.length - perView);
+    index = Math.min(index, max);
+    inspireTrack.style.transform = `translate3d(${-index * step}px,0,0)`;
+    progress.style.width = `${((index + perView) / cards.length) * 100}%`;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= max;
+  }
+  function layoutInspire() {
+    const width = viewport.clientWidth;
+    perView = width > 1000 ? 3 : width > 600 ? 2 : 1;
+    const cardWidth = (width - GAP * (perView - 1)) / perView;
+    step = cardWidth + GAP;
+    cards.forEach((card) => { card.style.width = `${cardWidth}px`; });
+    render();
+  }
+  prevBtn.addEventListener('click', () => { index -= 1; render(); });
+  nextBtn.addEventListener('click', () => { index += 1; render(); });
+  window.addEventListener('resize', layoutInspire);
+  layoutInspire();
+}
+
+// Designed Around the Details: small image slideshow with pause/play
+const featureThumb = document.getElementById('featureThumb');
+if (featureThumb) {
+  const slides = [...featureThumb.querySelectorAll('img')];
+  const pause = document.getElementById('featurePause');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  let running = !reduceMotion;
+  let timer;
+  const advance = () => {
+    slides[current].classList.remove('is-active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('is-active');
+  };
+  const sync = () => {
+    window.clearInterval(timer);
+    if (running) timer = window.setInterval(() => { if (!document.hidden) advance(); }, 4000);
+    pause.setAttribute('aria-pressed', String(!running));
+    pause.setAttribute('aria-label', running ? 'Pause slideshow' : 'Play slideshow');
+    pause.innerHTML = `<i class="fa-solid ${running ? 'fa-pause' : 'fa-play'}" aria-hidden="true"></i>`;
+  };
+  pause.addEventListener('click', () => { running = !running; sync(); });
+  sync();
+}
 
 searchDialog.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
