@@ -495,10 +495,11 @@ a{text-decoration:none}
 
 /* Find your appliance: 4-column image grid with label below (reference layout) */
 .categories .section-heading{justify-content:center;text-align:center;margin-bottom:40px}
-.categories .appliance-selector{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px;max-width:1110px;margin:0 auto;overflow:visible}
+.categories .appliance-selector{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:36px 20px;max-width:100%;margin:0 auto;overflow:visible}
 .categories .appliance-tile{display:flex;flex-direction:column;height:auto;flex:initial;border-radius:0;overflow:visible;background:none;color:var(--ink)}
-.categories .appliance-tile img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;padding:14px;background:var(--stone);transition:transform .4s ease-out}
-.categories .appliance-tile:hover img{transform:scale(1.03)}
+.categories .appliance-tile img{display:block;position:relative;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:12% 10% 14%;background:none;filter:drop-shadow(0 14px 14px rgba(0,0,0,.28));transition:transform .5s ease-out}
+.categories .appliance-tile:hover img{transform:scale(1.04)}
+.categories .appliance-tile>.tile-media{position:relative;inset:auto;display:block;padding:0;overflow:hidden;border-radius:0;background:radial-gradient(70% 60% at 50% 38%,rgba(255,255,255,.75),rgba(255,255,255,0) 70%),linear-gradient(180deg,#e7e1d9 0%,#d6cec4 74%,#a99d90 74%,#8f8478 100%)}
 .categories .appliance-tile>span{position:static;display:block;padding:14px 0 0;background:none;border-radius:0;text-align:center}
 .categories .appliance-tile strong{font-size:15px;font-weight:400;letter-spacing:.01em}
 @media (max-width:1120px){.categories .appliance-selector{grid-template-columns:repeat(3,minmax(0,1fr))}}
