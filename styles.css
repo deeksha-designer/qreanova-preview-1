@@ -917,3 +917,8 @@ section#thinking{background:#fff url(assets/launch-fade.svg) center/100% 100% no
 .support-tile-icon{display:grid;place-items:center;width:fit-content;height:auto;margin-bottom:38px;border-radius:50%;background:none;color:var(--bronze);font-size:42px}
 .support-tile strong{padding-right:0}
 @media (max-width:1120px){.support-media{min-height:0;height:420px}}
+
+/* ===== Round 9 ===== */
+.owner-grid{position:relative;height:auto;min-height:700px;display:flex;align-items:center;padding:70px var(--page);max-width:100%}
+.footer-links{padding:44px 0;background:none;border-radius:0;border-top:0;border-bottom:1px solid rgba(255,255,255,.12);gap:32px}
+@media (max-width:760px){.owner-grid{min-height:0}}
