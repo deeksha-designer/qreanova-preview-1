@@ -788,3 +788,28 @@ body.compare-open{overflow:hidden}
 @media (max-width:760px){.knowledge-bar{grid-template-columns:1fr;justify-items:center}.knowledge .blog-filters{grid-column:1;width:100%}.knowledge .blog-filters button{min-width:0;padding:10px 12px;font-size:14px}.promo-card{grid-template-columns:1fr 40%;padding:22px}.promo-prev{left:4px}.promo-next{right:4px}.inspire-card h3{font-size:20px}}
 .knowledge .blog-rail{transition:opacity .22s ease}
 .blog-card>div .blog-excerpt{color:var(--muted);font-size:15px;font-weight:400;letter-spacing:0;text-transform:none;line-height:1.6;max-height:4em}
+
+/* ===== Round 5 (user-specified values) ===== */
+.button,.shop-actions .button{font-weight:900}
+/* Collections 40/60 + centred card names */
+.collections .collection-hero{width:40%}
+@media (max-width:1120px){.collections .collection-hero{width:40%}}
+@media (max-width:760px){.collections .collection-hero{width:100%}}
+.collection-card h3{text-align:center}
+/* New Launches card */
+.launches .shop-media{height:auto;min-height:0;padding:14px 42px 24px;display:grid;place-items:center;background:radial-gradient(70% 55% at 50% 40%,#fff,rgba(255,255,255,0) 72%),var(--stone)}
+.launches .shop-media img{width:100%;height:auto;max-height:none;object-fit:contain;padding:0}
+.shop-body{padding:0 28px 38px}
+.shop-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px}
+.shop-title h3{margin:0}
+.shop-body h3{font-size:20px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em}
+.shop-sku{margin:0 0 48px;font-size:14px;letter-spacing:0;color:var(--ink)}
+.shop-price{margin-bottom:20px}
+.shop-sale{font-size:16px;font-weight:500;color:#c80a33}
+.shop-sale span{font-size:17px;font-weight:500;color:#c80a33}
+.shop-delivery{display:flex;align-items:center;gap:6px;margin:6px 0 0;font-size:13px;color:#2f7a4c}
+.shop-mrp b{font-weight:400;letter-spacing:0;font-size:12px}
+.shop-mrp s{text-decoration:none;color:var(--ink);font-size:14px}
+.compare-control,.shop-body .compare-control{margin-top:auto;margin-bottom:24px;font-size:15px;display:flex;align-items:center;gap:8px}
+.shop-actions{margin-top:0}
+.launches .shop-media img{aspect-ratio:1/1}

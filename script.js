@@ -421,7 +421,7 @@ function createLoopSlider({ viewport, track, perView, interval = 3200, gap = 14,
 createLoopSlider({
   viewport: document.getElementById('launchViewport'),
   track: document.getElementById('launchRail'),
-  perView: (w) => (w > 1120 ? 4 : w > 760 ? 3 : w > 520 ? 2 : 1.15),
+  perView: (w) => (w > 1120 ? 4.5 : w > 760 ? 3.2 : w > 520 ? 2.2 : 1.15),
   interval: 3600,
   prev: document.querySelector('.rail-prev'),
   next: document.querySelector('.rail-next')
