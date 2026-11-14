@@ -73,13 +73,141 @@ document.querySelectorAll('.detail-item').forEach((item) => {
   });
 });
 
-document.querySelectorAll('.collection-tabs [role="tab"]').forEach((tab) => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.collection-tabs [role="tab"]').forEach((button) => button.setAttribute('aria-selected', 'false'));
-    tab.setAttribute('aria-selected', 'true');
-    showToast(`${tab.textContent} selected. Verified product data will populate this collection.`);
+const collectionData = {
+  all: {
+    hero: { src: 'assets/kitchen-concept.png', alt: 'Premium integrated kitchen with Qreanova appliances', kicker: 'Complete kitchen view', title: 'Appliances designed to belong together' },
+    items: ['chimneys', 'hobs', 'ovens']
+  },
+  chimneys: {
+    hero: { src: 'assets/offer-kitchen.png', alt: 'Black glass Qreanova chimney above a gas hob', kicker: 'Ventilation', title: 'Chimneys that keep the kitchen clear' },
+    items: [
+      { src: 'assets/chimney-1.png', alt: 'Black glass angled chimney', name: 'Angled glass chimney', type: 'Chimneys' },
+      { src: 'assets/chimney-2.png', alt: 'Stainless steel T-shape chimney', name: 'T-shape chimney', type: 'Chimneys' },
+      { src: 'assets/chimney-3.png', alt: 'Curved glass chimney', name: 'Curved glass chimney', type: 'Chimneys' },
+      { src: 'assets/chimney-4.png', alt: 'Ceiling-integrated chimney', name: 'Built-in chimney', type: 'Chimneys' }
+    ]
+  },
+  hobs: {
+    hero: { src: 'assets/offer-built-in.png', alt: 'Glass hob set into a stone countertop', kicker: 'Cooking surfaces', title: 'Hobs and cooktops for everyday cooking' },
+    items: [
+      { src: 'assets/product-hob.png', alt: 'Black glass gas hob', name: 'Glass gas hob', type: 'Hobs' },
+      { src: 'assets/product-cooktop.png', alt: 'Stainless steel cooktop', name: 'Stainless cooktop', type: 'Cooktops' },
+      { src: 'assets/product-induction.png', alt: 'Infrared induction cooktop', name: 'Infrared induction', type: 'Hobs' }
+    ]
+  },
+  ovens: {
+    hero: { src: 'assets/oven-concept.png', alt: 'Built-in oven in a warm stone kitchen', kicker: 'Built-in cooking', title: 'Ovens and microwaves made to fit in' },
+    items: [
+      { src: 'assets/product-oven.png', alt: 'Built-in oven', name: 'Built-in oven', type: 'Ovens' },
+      { src: 'assets/product-microwave.png', alt: 'Built-in microwave', name: 'Built-in microwave', type: 'Microwaves' }
+    ]
+  }
+};
+collectionData.all.items = collectionData.all.items.flatMap((key) => collectionData[key].items);
+
+const collectionShowcase = document.getElementById('collectionShowcase');
+if (collectionShowcase) {
+  const hero = document.getElementById('collectionHero');
+  const heroImg = hero.querySelector('img');
+  const heroKicker = document.getElementById('collectionHeroKicker');
+  const heroTitle = document.getElementById('collectionHeroTitle');
+  const slider = document.getElementById('collectionSlider');
+  const track = document.getElementById('collectionTrack');
+  const tabs = [...document.querySelectorAll('.collection-tabs [role="tab"]')];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GAP = 14;
+  const INTERVAL = 3200;
+  let count = 0;
+  let start = 0;
+  let index = 0;
+  let step = 0;
+  let offset = 0;
+  let timer;
+  let paused = false;
+
+  const cardHTML = (item) => `<article class="collection-card"><img src="${item.src}" alt="${item.alt}" loading="lazy"><div><strong>${item.name}</strong><span>${item.type}</span></div></article>`;
+
+  function layout() {
+    const overlay = getComputedStyle(hero).position === 'absolute';
+    const width = slider.clientWidth;
+    offset = overlay ? hero.offsetWidth + GAP : 0;
+    const visible = width - offset;
+    const perView = overlay ? (visible > 560 ? 2 : 1) : 1;
+    const cardWidth = overlay ? (visible - GAP * (perView - 1)) / perView : width * 0.72;
+    step = cardWidth + GAP;
+    track.querySelectorAll('.collection-card').forEach((card) => { card.style.width = `${cardWidth}px`; });
+    position(false);
+  }
+
+  function position(animate) {
+    track.style.transition = animate ? 'transform .7s cubic-bezier(.65,0,.35,1), opacity .3s ease' : 'opacity .3s ease';
+    track.style.transform = `translate3d(${offset - index * step}px,0,0)`;
+  }
+
+  function build(key) {
+    const items = collectionData[key].items;
+    count = items.length;
+    const copies = Math.max(5, Math.ceil(16 / count));
+    track.innerHTML = Array.from({ length: copies }, () => items.map(cardHTML).join('')).join('');
+    start = count * Math.floor(copies / 2);
+    index = start;
+    layout();
+  }
+
+  function move(direction) {
+    index += direction;
+    position(true);
+  }
+
+  track.addEventListener('transitionend', (event) => {
+    if (event.propertyName !== 'transform') return;
+    if (index >= start + count || index < start - count + 1) {
+      index = start + (((index - start) % count) + count) % count;
+      position(false);
+    }
   });
-});
+
+  function play() {
+    window.clearInterval(timer);
+    if (reduceMotion) return;
+    timer = window.setInterval(() => { if (!paused && !document.hidden) move(1); }, INTERVAL);
+  }
+
+  function show(key) {
+    const { hero: h } = collectionData[key];
+    hero.classList.add('is-switching');
+    track.classList.add('is-switching');
+    window.setTimeout(() => {
+      heroImg.src = h.src;
+      heroImg.alt = h.alt;
+      heroKicker.textContent = h.kicker;
+      heroTitle.textContent = h.title;
+      build(key);
+      hero.classList.remove('is-switching');
+      track.classList.remove('is-switching');
+      play();
+    }, 260);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      if (tab.getAttribute('aria-selected') === 'true') return;
+      tabs.forEach((button) => button.setAttribute('aria-selected', String(button === tab)));
+      show(tab.dataset.category);
+    });
+  });
+
+  document.querySelector('.collection-prev')?.addEventListener('click', () => { move(-1); play(); });
+  document.querySelector('.collection-next')?.addEventListener('click', () => { move(1); play(); });
+  collectionShowcase.addEventListener('mouseenter', () => { paused = true; });
+  collectionShowcase.addEventListener('mouseleave', () => { paused = false; });
+  collectionShowcase.addEventListener('focusin', () => { paused = true; });
+  collectionShowcase.addEventListener('focusout', () => { paused = false; });
+  window.addEventListener('resize', layout);
+
+  build('all');
+  play();
+}
 
 const toast = document.getElementById('toast');
 let toastTimer;

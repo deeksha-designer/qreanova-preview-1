@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Qreanova Kitchen Appliances — Innovations Redefined.">
   <title>Qreanova Kitchen Appliances</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261114b">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -122,10 +122,14 @@
       <section class="section collections" id="collections" aria-labelledby="collections-title">
         <div class="common-container">
         <div class="section-heading split reveal"><div><h2 id="collections-title">Qreanova Collections</h2></div><button class="text-button planned-link" data-message="Compare will activate when verified model specifications are supplied.">Compare models</button></div>
-        <div class="collection-tabs" role="tablist" aria-label="Product categories">
+        <div class="collection-bar"><div class="collection-tabs" role="tablist" aria-label="Product categories">
           <button role="tab" aria-selected="true" data-category="all">All</button><button role="tab" aria-selected="false" data-category="chimneys">Chimneys</button><button role="tab" aria-selected="false" data-category="hobs">Hobs</button><button role="tab" aria-selected="false" data-category="ovens">Ovens</button>
         </div>
-        <div class="collection-editorial"><article class="collection-hero"><img src="assets/kitchen-concept.png" alt="Premium integrated kitchen concept"><div><p>Complete kitchen view</p><h3>Appliances designed to belong together</h3><button class="button button-light planned-link" data-message="Collection pages will connect to verified Shopify product groups.">Explore collection</button></div></article><div class="collection-stack"><article><img src="assets/chimney-2.png" alt="Stainless steel chimney concept"><div><strong>Ventilation</strong><span>Chimneys</span></div></article><article><img src="assets/oven-concept.png" alt="Built-in oven concept"><div><strong>Built-in cooking</strong><span>Ovens &amp; microwaves</span></div></article></div></div>
+        <div class="collection-controls"><button class="icon-button collection-prev" aria-label="Previous products">←</button><button class="icon-button collection-next" aria-label="Next products">→</button></div></div>
+        <div class="collection-editorial" id="collectionShowcase">
+          <article class="collection-hero" id="collectionHero"><img src="assets/kitchen-concept.png" alt="Premium integrated kitchen with Qreanova appliances"><div><p id="collectionHeroKicker">Complete kitchen view</p><h3 id="collectionHeroTitle">Appliances designed to belong together</h3><button class="button button-light planned-link" data-message="Collection pages will connect to verified Shopify product groups.">Explore collection</button></div></article>
+          <div class="collection-slider" id="collectionSlider" aria-roledescription="carousel" aria-label="Collection products"><div class="collection-track" id="collectionTrack"></div></div>
+        </div>
         </div>
       </section>
 
@@ -191,6 +195,6 @@
   </dialog>
   <dialog class="utility-dialog" id="utilityDialog" aria-labelledby="utilityTitle"><form method="dialog"><button class="icon-button dialog-close" aria-label="Close">×</button><h2 id="utilityTitle"></h2><p id="utilityBody"></p><button class="button" value="close">Continue browsing</button></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="script.js"></script>
+  <script src="script.js?v=20261114b"></script>
 </body>
 </html>
