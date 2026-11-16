@@ -945,8 +945,5 @@ section#thinking{background:#fff url(assets/launch-fade.svg) center/100% 100% no
 .text-mega .mega-image-card{padding:0}
 @media (max-width:1120px){.mega-category-grid a:nth-child(3n+1){border-left:0}}
 .mega-secondary h2{font-size:15px;margin:0 0 16px}
-/* Light shadow on every slider card; viewports clip only horizontally so the shadow shows */
-.collections .collection-editorial,.collection-slider,.launch-viewport,.inspire-viewport,.blog-viewport{overflow-x:clip;overflow-y:visible}
-.collections .collection-hero,.collection-card,.launches .shop-card,.inspire-card,.knowledge .blog-card{box-shadow:0 12px 26px -10px rgba(32,32,30,.16)}
-.collections .collection-hero{box-shadow:14px 0 0 var(--bg),0 12px 26px -10px rgba(32,32,30,.16)}
-@media (min-width:761px){.collections .collection-slider{clip-path:inset(-30px 0 -40px calc(40% + 14px))}}
+/* Slider right-edge fade into the section background (no card shadows) */
+.collection-slider,.launch-viewport,.inspire-viewport,.blog-viewport{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 82%,rgba(0,0,0,.85) 88%,rgba(0,0,0,.45) 95%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 82%,rgba(0,0,0,.85) 88%,rgba(0,0,0,.45) 95%,transparent 100%)}
