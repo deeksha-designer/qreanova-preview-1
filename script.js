@@ -1,5 +1,6 @@
 const triggers = [...document.querySelectorAll('.nav-trigger')];
 const panels = [...document.querySelectorAll('.mega-menu')];
+const hoverMenus = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 function closeMenus() {
   triggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
@@ -9,7 +10,7 @@ function closeMenus() {
 triggers.forEach((trigger) => {
   trigger.addEventListener('click', () => {
     const panel = document.querySelector(`[data-panel="${trigger.dataset.menu}"]`);
-    const opening = trigger.getAttribute('aria-expanded') !== 'true';
+    const opening = hoverMenus || trigger.getAttribute('aria-expanded') !== 'true';
     closeMenus();
     if (opening) {
       trigger.setAttribute('aria-expanded', 'true');
@@ -21,6 +22,33 @@ triggers.forEach((trigger) => {
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.site-header')) closeMenus();
 });
+
+// Desktop: open mega menus on hover too (click still works)
+if (hoverMenus) {
+  const header = document.querySelector('.site-header');
+  let hoverTimer;
+  const openMenu = (trigger) => {
+    window.clearTimeout(hoverTimer);
+    if (trigger.getAttribute('aria-expanded') === 'true') return;
+    closeMenus();
+    trigger.setAttribute('aria-expanded', 'true');
+    document.querySelector(`[data-panel="${trigger.dataset.menu}"]`).hidden = false;
+  };
+  triggers.forEach((trigger) => trigger.addEventListener('mouseenter', () => {
+    window.clearTimeout(hoverTimer);
+    hoverTimer = window.setTimeout(() => openMenu(trigger), 80);
+  }));
+  // Hovering other header items (logo, icons) closes the menu; the open panel keeps it open
+  header.querySelectorAll('.brand, .header-actions').forEach((el) => el.addEventListener('mouseenter', () => {
+    window.clearTimeout(hoverTimer);
+    hoverTimer = window.setTimeout(closeMenus, 150);
+  }));
+  panels.forEach((panel) => panel.addEventListener('mouseenter', () => window.clearTimeout(hoverTimer)));
+  header.addEventListener('mouseleave', () => {
+    window.clearTimeout(hoverTimer);
+    hoverTimer = window.setTimeout(closeMenus, 200);
+  });
+}
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
