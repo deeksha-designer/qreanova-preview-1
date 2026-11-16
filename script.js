@@ -132,8 +132,9 @@ if (collectionShowcase) {
     const width = slider.clientWidth;
     offset = overlay ? hero.offsetWidth + GAP : 0;
     const visible = width - offset;
-    const perView = overlay ? (visible > 900 ? 3 : visible > 520 ? 2 : 1) : 1;
-    cardWidth = overlay ? (visible - GAP * (perView - 1)) / perView : width * 0.72;
+    const perView = overlay ? (visible > 520 ? 2.2 : 1.2) : 1;
+    const gaps = Number.isInteger(perView) ? perView - 1 : Math.floor(perView);
+    cardWidth = overlay ? (visible - GAP * gaps) / perView : width * 0.72;
     step = cardWidth + GAP;
   }
 

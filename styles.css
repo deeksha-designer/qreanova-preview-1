@@ -932,3 +932,15 @@ section#thinking{background:#fff url(assets/launch-fade.svg) center/100% 100% no
 @media (max-width:560px){.support-tiles{grid-template-columns:1fr}}
 
 .collection-bar{margin-bottom:48px}
+
+/* 16 Nov review: hero 70vh, Plan your choice panel, centred menu labels, discover image fill, mega menu shadow */
+.hero{height:70vh;min-height:460px}
+@media (max-width:760px){.hero{height:70vh;min-height:460px}}
+.mega-menu{box-shadow:0 14px 28px -12px rgba(32,32,30,.12);border-top:1px solid rgba(32,32,30,.05)}
+.mega-secondary{background:var(--stone);padding:24px;border-radius:var(--radius);align-self:start;text-align:center}
+.mega-category-grid{gap:0}
+.mega-category-grid a{text-align:center;padding:0 22px;border-radius:0}
+.mega-category-grid a+a{border-left:1px solid rgba(32,32,30,.07)}
+.mega-category-grid span{text-align:center}
+.text-mega .mega-image-card{padding:0}
+@media (max-width:1120px){.mega-category-grid a:nth-child(3n+1){border-left:0}}
